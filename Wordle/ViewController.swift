@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
   private var boardController: BoardController!
   private var keyboardController: KeyboardController!
-
+    
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -31,6 +31,15 @@ class ViewController: UIViewController {
      */
     // START YOUR CODE HERE
     // ...
+      keyboardController.didSelectString = { [weak self] selectedKey in
+          guard let self = self else { return }
+          
+          if selectedKey == DELETE_KEY {
+              self.boardController.deleteLastCharacter()
+          } else {
+              self.boardController.enter(selectedKey)
+          }
+      }
     // END YOUR CODE HERE
   }
 }
